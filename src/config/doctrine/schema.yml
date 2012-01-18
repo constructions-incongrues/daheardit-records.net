@@ -1,6 +1,9 @@
 Artist:
   connection: doctrine
   tableName: artist
+  actAs:
+    I18n:
+      fields: [presentation]
   columns:
     id:
       type: integer(8)
@@ -14,6 +17,9 @@ Artist:
     slug:
       type: string
       notnull: true
+    presentation:
+      type: clob
+
 
 DATABASECHANGELOG:
   connection: doctrine
