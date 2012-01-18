@@ -13,4 +13,6 @@ all:
     items:
       Artistes:
         url:              artist
+      Productions:
+        url:              production
 

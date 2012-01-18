@@ -1,13 +1,13 @@
 generator:
   class: sfDoctrineGenerator
   param:
-    model_class:           Artist
+    model_class:           Production
     theme:                 twitter
     non_verbose_templates: true
     with_show:             false
     singular:              ~
     plural:                ~
-    route_prefix:          artist
+    route_prefix:          production
     with_doctrine_route:   true
     actions_base_class:    sfActions
 
@@ -19,4 +19,3 @@ generator:
       form:    ~
       edit:    ~
       new:     ~
-

@@ -1,3 +1,12 @@
+production:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                Production
+    module:               production
+    prefix_path:          /production
+    column:               id
+    with_wildcard_routes: true
+
 artist:
   class: sfDoctrineRouteCollection
   options:

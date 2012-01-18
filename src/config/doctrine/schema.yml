@@ -19,6 +19,38 @@ Artist:
       notnull: true
     presentation:
       type: clob
+  relations:
+    Production:
+      type: many
+      foreignAlias: productions
+
+Production:
+  connection: doctrine
+  tableName: production
+  columns:
+    id:
+      type: integer(8)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: true
+    name:
+      type: string
+      notnull: false
+    slug:
+      type: string
+      notnull: true
+    presentation:
+      type: clob
+    artist_id:
+      type: integer(8)
+      fixed: false
+      unsigned: false
+  relations:
+    Artist:
+      local: artist_id
+      foreign: id
+      type: one
 
 
 DATABASECHANGELOG:

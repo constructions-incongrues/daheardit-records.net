@@ -2,6 +2,7 @@ CREATE TABLE artist_translation (id BIGINT, presentation LONGTEXT, lang CHAR(2),
 CREATE TABLE artist (id BIGINT AUTO_INCREMENT, name TEXT, slug TEXT NOT NULL, PRIMARY KEY(id)) ENGINE = INNODB;
 CREATE TABLE DATABASECHANGELOG (id VARCHAR(63), author VARCHAR(63), filename VARCHAR(200), dateexecuted DATETIME NOT NULL, orderexecuted INT NOT NULL, exectype VARCHAR(10) NOT NULL, md5sum VARCHAR(35), description VARCHAR(255), comments VARCHAR(255), tag VARCHAR(255), liquibase VARCHAR(20), PRIMARY KEY(id, author, filename)) ENGINE = INNODB;
 CREATE TABLE DATABASECHANGELOGLOCK (id INT, locked TINYINT NOT NULL, lockgranted DATETIME, lockedby VARCHAR(255), PRIMARY KEY(id)) ENGINE = INNODB;
+CREATE TABLE production (id BIGINT AUTO_INCREMENT, name TEXT, slug TEXT NOT NULL, presentation LONGTEXT, artist_id BIGINT, INDEX artist_id_idx (artist_id), PRIMARY KEY(id)) ENGINE = INNODB;
 CREATE TABLE sf_guard_forgot_password (id BIGINT AUTO_INCREMENT, user_id BIGINT NOT NULL, unique_key VARCHAR(255), expires_at DATETIME NOT NULL, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, INDEX user_id_idx (user_id), PRIMARY KEY(id)) ENGINE = INNODB;
 CREATE TABLE sf_guard_group (id BIGINT AUTO_INCREMENT, name VARCHAR(255) UNIQUE, description TEXT, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, PRIMARY KEY(id)) ENGINE = INNODB;
 CREATE TABLE sf_guard_group_permission (group_id BIGINT, permission_id BIGINT, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, PRIMARY KEY(group_id, permission_id)) ENGINE = INNODB;
@@ -11,6 +12,7 @@ CREATE TABLE sf_guard_user (id BIGINT AUTO_INCREMENT, first_name VARCHAR(255), l
 CREATE TABLE sf_guard_user_group (user_id BIGINT, group_id BIGINT, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, PRIMARY KEY(user_id, group_id)) ENGINE = INNODB;
 CREATE TABLE sf_guard_user_permission (user_id BIGINT, permission_id BIGINT, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, PRIMARY KEY(user_id, permission_id)) ENGINE = INNODB;
 ALTER TABLE artist_translation ADD CONSTRAINT artist_translation_id_artist_id FOREIGN KEY (id) REFERENCES artist(id) ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE production ADD CONSTRAINT production_artist_id_artist_id FOREIGN KEY (artist_id) REFERENCES artist(id);
 ALTER TABLE sf_guard_forgot_password ADD CONSTRAINT sf_guard_forgot_password_user_id_sf_guard_user_id FOREIGN KEY (user_id) REFERENCES sf_guard_user(id) ON DELETE CASCADE;
 ALTER TABLE sf_guard_group_permission ADD CONSTRAINT sf_guard_group_permission_permission_id_sf_guard_permission_id FOREIGN KEY (permission_id) REFERENCES sf_guard_permission(id) ON DELETE CASCADE;
 ALTER TABLE sf_guard_group_permission ADD CONSTRAINT sf_guard_group_permission_group_id_sf_guard_group_id FOREIGN KEY (group_id) REFERENCES sf_guard_group(id) ON DELETE CASCADE;
