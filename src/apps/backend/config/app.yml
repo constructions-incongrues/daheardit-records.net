@@ -2,4 +2,15 @@
 # http://www.symfony-project.org/reference/1_4/en/11-App
 
 # default values
-#all:
+all:
+  sf_twitter_bootstrap:
+    site:                   Da! Heard It Records
+    # if you want top links to fieldset legend in new/edit page (like "Admin & Content" in the edit screenshot)
+    top_link_to_fieldset:   true
+    # if you *also* want to display the pagination on top of the list
+    display_top_pagination: true
+
+    items:
+      Artistes:
+        url:              artist
+
